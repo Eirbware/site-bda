@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id      Int     @id @default(autoincrement())
+  name    String
+  surname String
+  uid     String  @unique
+  email   String  @unique
+  member  Member?
+  role Role @default(USER)
+}
+
+model Member {
+  id          Int    @id @default(autoincrement())
+  title       String
+  picture     String
+  description String
+
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId Int     @unique
+
+  year         Int
+  partentheses Partenthese[]
+
+  order         Int @default(1)
+}
+
+model Partenthese {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String
+
+  year Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author   Member @relation(fields: [authorId], references: [id])
+  authorId Int
+
+  PartentheseCategory   PartentheseCategory? @relation(fields: [partentheseCategoryId], references: [id])
+  partentheseCategoryId Int?
+}
+
+model PartentheseCategory {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  partentheses Partenthese[]
+}
+
+enum Role {
+  ADMIN
+  PPC
+  MEMBER
+  USER
+}

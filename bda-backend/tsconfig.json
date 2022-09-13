@@ -1,0 +1,11 @@
+{
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "strictPropertyInitialization": false,
+        "esModuleInterop": true,
+        "moduleResolution": "Node16",
+
+    }
+}

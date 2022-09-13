@@ -1,0 +1,51 @@
+{
+  "name": "bda-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx ts-node-esm src/index.ts"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
+    "@types/axios": "^0.14.0",
+    "@types/body-parser": "^1.19.2",
+    "@types/connect-redis": "^0.0.18",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/express-session": "^1.17.5",
+    "@types/graphql-fields": "^1.3.4",
+    "@types/graphql-upload": "^8.0.11",
+    "@types/ioredis": "^4.28.10",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^18.7.15",
+    "prisma": "^4.3.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "@duannx/vue-router-transition": "^1.1.3",
+    "@prisma/client": "4.3.1",
+    "@vue/apollo-option": "^4.0.0-alpha.20",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "apollo-server-express": "^3.10.2",
+    "body-parser": "^1.20.0",
+    "class-validator": "^0.13.2",
+    "connect-redis": "^6.1.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "express-session": "^1.17.3",
+    "graphql": "^15.3.0",
+    "graphql-fields": "^2.0.3",
+    "graphql-scalars": "^1.18.0",
+    "graphql-upload": "^16.0.2",
+    "ioredis": "^5.2.3",
+    "multer": "^1.4.5-lts.1",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
+  }
+}

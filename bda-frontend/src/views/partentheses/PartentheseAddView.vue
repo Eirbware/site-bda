@@ -11,7 +11,7 @@
           <ul>
             <li><span class="badge">Dashboard</span></li>
             <li>
-              <router-link to="/dashboard/partenthèses" class="badge">Gestion des p'Art'enthèses</router-link>
+              <router-link to="/dashboard/partentheses" class="badge">Gestion des p'Art'enthèses</router-link>
             </li>
             <li><span class="badge">Ajout</span></li>
           </ul>
@@ -115,7 +115,7 @@ export default {
           });
 
           // Redirect to the partenthèses management view
-          this.$router.push("/dashboard/partenthèses");
+          this.$router.push("/dashboard/partentheses");
         }).catch(error => {
 
           // Display a toast with the error message

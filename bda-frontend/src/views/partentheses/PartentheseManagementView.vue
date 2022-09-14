@@ -39,13 +39,15 @@
           <thead>
           <tr>
             <th class="py-5 mb-10 pl-10">Titre</th>
+            <th class="py-5 mb-10">Auteur.rice</th>
             <th class="py-5 mb-10">Catégorie</th>
+            <th class="py-5 mb-10">Année</th>
             <th class="py-5 mb-10">Actions</th>
           </tr>
           </thead>
 
           <tbody>
-          <PartentheseRow v-for="partenthese in partentheses" :partenthese="partenthese" :key="partenthese.id"/>
+            <PartentheseRow v-for="partenthese in partentheses" :partenthese="partenthese" :key="partenthese.id"/>
           </tbody>
 
         </table>
@@ -71,6 +73,10 @@ export default {
     }
   },
   mounted() {
+    emitter.on("reloadPartentheseList", () => {
+      this.fetchPartentheses();
+    });
+
     this.fetchPartentheses();
   },
   methods: {
@@ -90,14 +96,24 @@ export default {
             partentheses {
               id
               title
-              category {
+              year
+              partentheseCategory {
                 id
                 name
+              }
+              author {
+                student {
+                  id
+                  name
+                  surname
+                }
               }
             }
           }
         `
       }).then(({ data: { partentheses }}) => {
+        console.log(partentheses)
+
         this.partentheses = partentheses;
         this.partenthesesBackup = partentheses;
       }).catch(error => {

@@ -15,7 +15,7 @@
         </div>
 
         <!-- Search bar and add button -->
-        <div class="flex flex-row items-center w-full mb-5">
+        <div class="flex flex-row items-center w-full mb-5 justify-between">
           <input type="text" placeholder="Recherche" class="input input-bordered w-full max-w-xs h-10 mr-10"
                  v-model="searchQuery"
                  @input="handleSearchInput"/>
@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <table class="table table-zebra w-full rounded-lg overflow-hidden">
+        <table class="table table-zebra w-full rounded-lg overflow-hidden min-w-[90rem]">
 
           <thead>
           <tr>

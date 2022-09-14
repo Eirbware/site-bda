@@ -12,6 +12,7 @@ import HomeView from "@/views/HomeView.vue";
 import CategoryManagementView from "@/views/categories/CategoryManagementView.vue";
 import PartentheseManagementView from "@/views/partentheses/PartentheseManagementView.vue";
 import PartentheseAddView from "@/views/partentheses/PartentheseAddView.vue";
+import PartentheseEditView from "@/views/partentheses/PartentheseEditView.vue";
 
 const routes = [
     {
@@ -107,7 +108,16 @@ const routes = [
             requiresAuth: true,
             requiresRoles: ["ADMIN", "PPC", "MEMBER"]
         }
-    }
+    },
+    {
+        path: "/dashboard/partentheses/:id/edit",
+        name: "Modifier une p'Art'enthèse",
+        component: PartentheseEditView,
+        meta: {
+            requiresAuth: true,
+            requiresRoles: ["ADMIN", "PPC", "MEMBER"]
+        }
+    },
 ];
 
 const router = createRouter({

@@ -1,17 +1,16 @@
 import {Arg, Authorized, Ctx, Field, ID, InputType, Mutation, Query, Resolver} from "type-graphql";
 import {Partenthese} from "../types/Partenthese";
-import {Role} from "@prisma/client";
+import {Member, Role} from "@prisma/client";
 import prismaClient from "../../clients/prismaClient";
-import {PartentheseCategory} from "../types/PartentheseCategory";
 import {GraphqlContext} from "../graphqlContext";
 
 @InputType()
-class UpdatePartentheseArgs implements Partial<Partenthese> {
+class UpdatePartentheseArgs {
     @Field(() => ID)
-    id: number;
+    id: string;
 
     @Field(() => ID, {nullable: true})
-    categoryId?: number;
+    categoryId?: string;
 
     @Field({nullable: true})
     title?: string;
@@ -46,11 +45,15 @@ export class PartentheseResolver {
 
     @Authorized([Role.MEMBER, Role.ADMIN])
     @Mutation(of => Partenthese)
-    async updatePartentheseOrder(@Arg("data") updatePartentheseArgs: UpdatePartentheseArgs) {
+    async updatePartenthese(@Ctx() context: GraphqlContext, @Arg("data") updatePartentheseArgs: UpdatePartentheseArgs) {
         const data: any = {};
 
         if (updatePartentheseArgs.categoryId) {
-            data.partentheseCategoryId = updatePartentheseArgs.categoryId;
+            data.partentheseCategory = {
+                connect: {
+                    id: parseInt(updatePartentheseArgs.categoryId)
+                }
+            }
         }
 
         if (updatePartentheseArgs.title) {
@@ -61,11 +64,18 @@ export class PartentheseResolver {
             data.content = updatePartentheseArgs.content;
         }
 
-        return await prismaClient.partenthese.update({
+        return prismaClient.partenthese.update({
             where: {
-                id: updatePartentheseArgs.id
+                id: parseInt(updatePartentheseArgs.id)
             },
-            data: data,
+            data: {
+                ...data,
+                lastUpdater: {
+                    connect: {
+                        id: context.user.id
+                    }
+                }
+            },
         });
     }
 
@@ -79,26 +89,94 @@ export class PartentheseResolver {
             }
         });
 
-        return await prismaClient.partenthese.create({
+        if (!member) {
+            throw new Error("Member not found");
+        }
+
+        return prismaClient.partenthese.create({
             data: {
                 title: createPartentheseArgs.title,
+                partentheseCategory: {
+                    connect: {
+                        id: parseInt(createPartentheseArgs.categoryId)
+                    }
+                },
                 content: createPartentheseArgs.content,
-                partentheseCategoryId: parseInt(createPartentheseArgs.categoryId),
-                // @ts-ignore
-                authorId: member.id,
+                author: {
+                    connect: {
+                         id: (member as Member).id
+                    }
+                },
                 year: new Date().getFullYear()
-            },
+            }
         });
     }
 
     @Query(returns => [Partenthese])
     async partentheses() {
-        return await prismaClient.partenthese.findMany({
-            include: {
-                author: true,
-                PartentheseCategory: true
+        const partentheses = await prismaClient.partenthese.findMany({
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                year: true,
+                author: {
+                    select: {
+                        id: true,
+                        student: {
+                            select: {
+                                id: true,
+                                name: true,
+                                surname: true,
+                            }
+                        }
+                    }
+                },
+                partentheseCategory: {
+                    select: {
+                        id: true,
+                        name: true,
+                    }
+                }
             }
         });
+
+        return partentheses;
+    }
+
+    @Query(returns => Partenthese)
+    async partenthese(@Arg("id") id: number) {
+        const partenthese = await prismaClient.partenthese.findUnique({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                year: true,
+                partentheseCategory: {
+                    select: {
+                        id: true,
+                        name: true,
+                    }
+                },
+                author: {
+                    select: {
+                        id: true,
+                        student: {
+                            select: {
+                                id: true,
+                                name: true,
+                                surname: true,
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        return partenthese;
     }
 
 }

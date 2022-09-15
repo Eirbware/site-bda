@@ -20,5 +20,5 @@ export class Partenthese {
     author: Member;
 
     @Field(type => PartentheseCategory)
-    category: PartentheseCategory;
+    partentheseCategory: PartentheseCategory;
 }

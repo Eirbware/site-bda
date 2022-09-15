@@ -74,11 +74,13 @@ APP.use(bodyParser.json());
 
     const server = new ApolloServer({
         schema,
-        context: ({req}) => ({
-            prisma: prisma,
-            // @ts-ignore
-            user: req.session.user
-        })
+        context: ({req}) => {
+            return {
+                prisma: prisma,
+                // @ts-ignore
+                user: req.session.user
+            };
+        }
     });
 
     await server.start();

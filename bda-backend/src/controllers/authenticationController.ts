@@ -26,7 +26,7 @@ async function validateCasTicket(casServerUrl: string, serviceUrl: string, ticke
  * @param uid {string} The username of the student (ex: "mcaravati" for Matteo Caravati).
  * @param response {Response} The response to send back to the client.
  */
-async function loadStudentData(uid: string, response: Response): Promise<Student> {
+async function loadStudentData(uid: string, response: Response) {
     const handleError = (err: Error) => {
         response.status(500).json({
             success: false,
@@ -115,17 +115,36 @@ async function authenticate(request: Request, response: Response): Promise<void>
     }
 
     // Get the student from the database
-    let student = await prisma.student.findUnique({
+    let student: any = await prisma.student.findUnique({
         where: {
             uid: username
         },
+        select: {
+            id: true,
+            uid: true,
+            name: true,
+            surname: true,
+            email: true,
+            role: true
+        }
     });
 
     // If the student hasn't been found
     if (!student) {
-        console.log("Loading student data");
         student = await loadStudentData(username, response);
-        console.log("Student data loaded");
+
+        // If the student couldn't be loaded
+        if (!student) {
+            return;
+        }
+    } else {
+        student.member = await prisma.member.findFirst({
+            where: {
+                student: {
+                    id: student.id
+                }
+            }
+        });
     }
 
     // Store the student in the session
@@ -133,7 +152,8 @@ async function authenticate(request: Request, response: Response): Promise<void>
     request.session.user = student;
 
     response.status(200).json({
-        success: true
+        success: true,
+        student: student
     });
 }
 

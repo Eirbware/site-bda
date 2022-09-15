@@ -18,7 +18,7 @@ model Student {
   uid     String  @unique
   email   String  @unique
   member  Member?
-  role Role @default(USER)
+  role    Role    @default(USER)
 }
 
 model Member {
@@ -30,10 +30,11 @@ model Member {
   student   Student @relation(fields: [studentId], references: [id])
   studentId Int     @unique
 
-  year         Int
-  partentheses Partenthese[]
+  year               Int
+  partentheses       Partenthese[] @relation("author")
+  editedPartentheses Partenthese[] @relation("lastUpdater")
 
-  order         Int @default(1)
+  order Int @default(1)
 }
 
 model Partenthese {
@@ -46,10 +47,13 @@ model Partenthese {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  author   Member @relation(fields: [authorId], references: [id])
+  author   Member @relation(fields: [authorId], references: [id], name: "author")
   authorId Int
 
-  PartentheseCategory   PartentheseCategory? @relation(fields: [partentheseCategoryId], references: [id])
+  lastUpdater   Member? @relation(fields: [lastUpdaterId], references: [id], name: "lastUpdater")
+  lastUpdaterId Int?
+
+  partentheseCategory   PartentheseCategory? @relation(fields: [partentheseCategoryId], references: [id])
   partentheseCategoryId Int?
 }
 

@@ -1,39 +1,57 @@
-version: "3.9"
+version: "3.3"
 services:
   redis:
     image: redis:latest
     container_name: redis
     restart: always
-    ports:
-      - "6379:6379"
+    expose:
+      - 6379
+    networks:
+      - bda
 
   backend:
-    image: ./backend/
+    build: ./bda-backend/
     container_name: backend
     depends_on:
       - redis
+      - mysql
     restart: always
     volumes:
-      - ./backend/src/assets/:/app/src/assets/
-    ports:
-      - "8661:3001"
+      - ./bda-backend/src/assets/:/app/src/assets/
+    environment:
+      MYSQL_HOST: mysql
+    expose:
+      - 3001
+    networks:
+      - bda
 
   frontend:
-    image: ./frontend/
+    build: ./bda-frontend/
     container_name: frontend
     depends_on:
       - backend
     restart: always
-    ports:
-      - "8660:80"
+    expose:
+      - 80
+    networks:
+      - bda
 
   mysql:
     image: mysql:latest
+    container_name: mysql
     restart: always
     environment:
-      MYSQL_DATABASE: ""
-      MYSQL_USER: ""
-      MYSQL_PASSWORD: ""
-      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: "bda"
+      MYSQL_USER: "bda"
+      MYSQL_PASSWORD: "0ptic$$"
+      MYSQL_ROOT_PASSWORD: "$$1rth1$$1$$aW3nDyS"
     volumes:
-        - ./mysql/data:/var/lib/mysql
+      - ./mysql/data:/var/lib/mysql
+    expose:
+      - 3306
+    networks:
+      - bda
+
+networks:
+  bda:
+    driver: bridge

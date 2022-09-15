@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "npx ts-node-esm src/index.ts"
+    "start": "npx ts-node-esm src/index.ts",
+    "generate": "npx prisma generate",
+    "migrate": "npx prisma migrate dev --name init"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",

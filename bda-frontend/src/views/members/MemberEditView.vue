@@ -69,7 +69,7 @@
 
                 <select class="select w-[13.5rem]" v-model="member.student.role">
                   <option disabled selected>Role</option>
-                  <option>ADMIN</option>
+                  <option v-if="me.role === 'ADMIN'">ADMIN</option>
                   <option>PPC</option>
                   <option>USER</option>
                 </select>
@@ -90,11 +90,12 @@
 </template>
 
 <script>
-import {getMember, updateMember} from "@/services/memberService";
+import {getMember, getMyMember, updateMember} from "@/services/memberService";
 import Header from "@/components/Header.vue";
 import {emitter} from "@/emitter";
 import {uploadProfilePicture} from "@/services/uploadService";
 import {toSvg} from "jdenticon";
+import {getMyStudent} from "@/services/studentService";
 
 export default {
   name: "MemberEditView",
@@ -114,10 +115,17 @@ export default {
       },
       selectedFile: null,
       selectedFileData: null,
-      identiconSeed: new Date().toISOString()
+      identiconSeed: new Date().toISOString(),
+      me: {
+        role: ""
+      }
     }
   },
   mounted() {
+    getMyStudent().then(student => {
+      this.me = student;
+    });
+
     getMember(this.$route.params.id).then((member) => {
       this.member = member;
     }).catch((error) => {
@@ -126,6 +134,8 @@ export default {
         message: error
       });
     });
+
+
   },
   methods: {
     onModifyMemberButtonClick() {

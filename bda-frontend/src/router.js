@@ -13,6 +13,8 @@ import CategoryManagementView from "@/views/categories/CategoryManagementView.vu
 import PartentheseManagementView from "@/views/partentheses/PartentheseManagementView.vue";
 import PartentheseAddView from "@/views/partentheses/PartentheseAddView.vue";
 import PartentheseEditView from "@/views/partentheses/PartentheseEditView.vue";
+import PartentheseListView from "@/views/partentheses/PartentheseListView.vue";
+import PartentheseView from "@/views/partentheses/PartentheseView.vue";
 
 const routes = [
     {
@@ -118,6 +120,22 @@ const routes = [
             requiresRoles: ["ADMIN", "PPC", "MEMBER"]
         }
     },
+    {
+        path: "/partentheses",
+        name: "Les p'Art'enthèses",
+        component: PartentheseListView,
+        meta: {
+            requiresAuth: false
+        }
+    },
+    {
+        path: "/partentheses/:id",
+        name: "Une p'Art'enthèse",
+        component: PartentheseView,
+        meta: {
+            requiresAuth: false
+        }
+    }
 ];
 
 const router = createRouter({

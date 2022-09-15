@@ -23,7 +23,6 @@
 
     </td>
   </tr>
-
 </template>
 
 <script>

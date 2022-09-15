@@ -152,6 +152,7 @@ export default {
         return;
       }
 
+      // Send the request to the server
       graphqlClient.mutate({
         mutation: gql`
           mutation update($data: UpdatePartentheseArgs!) {
@@ -169,6 +170,7 @@ export default {
           }
         }
       }).then(() => {
+        // Notify the user that the partenthese has been updated
         emitter.emit("notification", {
           type: "success",
           message: "P'art'enthèse a été éditée avec succès."

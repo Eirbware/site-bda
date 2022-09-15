@@ -40,7 +40,8 @@
           <!-- Validation button -->
           <div class="flex flex-row w-full justify-end mt-5">
             <span
-                class="btn bg-green-300 hover:bg-green-400 border-0 w-[13.5rem]"
+                class="border-0 w-[13.5rem]"
+                :class="isPartentheseValid ? 'btn bg-green-300 hover:bg-green-400 hover:cursor-pointer' : 'btn bg-gray-300'"
                 @click="onAddPartentheseButtonClick">Valider</span>
           </div>
         </div>
@@ -72,6 +73,7 @@ export default {
     }
   },
   mounted() {
+    // Fetch categories from the server
     graphqlClient.query({
       query: gql`
         query {
@@ -94,6 +96,7 @@ export default {
   },
   methods: {
     onAddPartentheseButtonClick() {
+      // Only send the data to the server if the input is valid
       if (this.isPartentheseValid) {
         graphqlClient.mutate({
           mutation: gql`

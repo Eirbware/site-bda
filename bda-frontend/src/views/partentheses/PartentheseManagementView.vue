@@ -47,7 +47,7 @@
           </thead>
 
           <tbody>
-            <PartentheseRow v-for="partenthese in partentheses" :partenthese="partenthese" :key="partenthese.id"/>
+          <PartentheseRow v-for="partenthese in partentheses" :partenthese="partenthese" :key="partenthese.id"/>
           </tbody>
 
         </table>
@@ -81,13 +81,18 @@ export default {
   },
   methods: {
     handleSearchInput() {
-      console.log(this.searchQuery)
-    },
-    onAddButtonClick() {
-      console.log("Add button clicked")
-    },
-    onValidationButtonClick() {
-      console.log("Validation button clicked")
+      // If the search query is empty, reset the partentheses list
+      if (this.searchQuery === "") {
+        this.partentheses = this.partenthesesBackup;
+        return;
+      }
+
+      // Filter the partentheses list
+      this.partentheses = this.partenthesesBackup.filter(partenthese => {
+        return partenthese.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+            || `${partenthese.author.student.name} ${partenthese.author.student.surname}`.toLowerCase().includes(this.searchQuery.toLowerCase())
+            || partenthese.year.toString().includes(this.searchQuery.toLowerCase())
+      });
     },
     fetchPartentheses() {
       graphqlClient.query({
@@ -111,9 +116,7 @@ export default {
             }
           }
         `
-      }).then(({ data: { partentheses }}) => {
-        console.log(partentheses)
-
+      }).then(({data: {partentheses}}) => {
         this.partentheses = partentheses;
         this.partenthesesBackup = partentheses;
       }).catch(error => {

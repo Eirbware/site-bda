@@ -10,7 +10,7 @@ function authenticateUser(ticket: string, token: string) {
                     return;
                 }
 
-                resolve({});
+                resolve(response.data.student);
             })
             .catch(error => {
                 reject(error);

@@ -62,7 +62,7 @@
 
                       <select class="select w-[14rem]" v-model="member.student.role">
                         <option selected>USER</option>
-                        <option>ADMIN</option>
+                        <option v-if="me.role === 'ADMIN'">ADMIN</option>
                         <option>PPC</option>
                       </select>
                     </div>
@@ -105,7 +105,7 @@
 
 <script>
 import Header from "@/components/Header.vue";
-import {getAllStudents} from "@/services/studentService";
+import {getAllStudents, getMyStudent} from "@/services/studentService";
 import {emitter} from "@/emitter";
 import {createMember} from "@/services/memberService";
 import {toSvg} from "jdenticon";
@@ -134,9 +134,16 @@ export default {
       selectedFile: null,
       selectedFileData: null,
       identiconSeed: new Date().toISOString(),
+      me: {
+        role: ""
+      }
     }
   },
   mounted() {
+    getMyStudent().then(student => {
+      this.me = student;
+    });
+
     getAllStudents().then((students) => {
       this.backupStudents = students;
       this.students = students;

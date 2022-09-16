@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" style="margin:auto;background:#efefef;display:block;z-index:1;position:relative" viewBox="0 0 1846 943">
+    <path fill="#5bc2eb" d="M2926-350c0 516 136 535-229 899s-383 229-899 229-535 136-900-229-228-383-228-899-137-534 228-899 384-229 900-229 534-136 899 229 229 383 229 899" opacity=".4">
+        <animateTransform attributeName="transform" dur="100s" repeatCount="indefinite" type="rotate" values="0;90"/>
+    </path>
+    <path fill="#60b8e2" d="M3326-514c0 619 164 641-274 1079s-460 274-1079 274-642 164-1080-274S619 105 619-514s-163-642 274-1079 460-275 1080-275 641-163 1079 275 274 460 274 1079" opacity=".4">
+        <animateTransform attributeName="transform" dur="50s" repeatCount="indefinite" type="rotate" values="0;90"/>
+    </path>
+    <path fill="#63afd9" d="M4287-908c0 866 229 898-384 1511s-644 383-1511 383-898 229-1510-383S498-42 498-908s-229-898 384-1511 644-384 1510-384 898-229 1511 384 384 644 384 1511" opacity=".4">
+        <animateTransform attributeName="transform" dur="33.333333333333336s" repeatCount="indefinite" type="rotate" values="0;90"/>
+    </path>
+    <path fill="#66a5cf" d="M6306-1736c0 1387 366 1436-614 2417s-1031 614-2418 614-1437 367-2417-614S242-349 242-1736s-366-1437 615-2418 1030-614 2417-614 1437-367 2418 614 614 1031 614 2418" opacity=".4">
+        <animateTransform attributeName="transform" dur="25s" repeatCount="indefinite" type="rotate" values="0;90"/>
+    </path>
+    <path fill="#689cc5" d="M10612-3503c0 2497 660 2587-1105 4352S7652 1955 5155 1955 2569 2614 804 849-302-1006-302-3503-962-6089 804-7854s1855-1106 4351-1106 2586-659 4352 1106 1105 1855 1105 4351" opacity=".4">
+        <animateTransform attributeName="transform" dur="20s" repeatCount="indefinite" type="rotate" values="0;90"/>
+    </path>
+</svg>

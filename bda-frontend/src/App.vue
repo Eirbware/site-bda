@@ -1,6 +1,6 @@
 <template>
   <div class="absolute w-full h-full" style="z-index: -1">
-    <img src="./assets/backgrounds/waves.svg" alt="background" class="w-full h-full object-cover">
+    <img src="./assets/backgrounds/waves-optimized.svg" alt="background" class="w-full h-full object-cover">
   </div>
 
   <Header />

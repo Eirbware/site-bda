@@ -55,7 +55,7 @@ export function createMember(member: any) {
     return new Promise((resolve, reject) => {
         graphqlClient.mutate({
             mutation: gql`
-            mutation {
+            mutation MemberCreation($member: CreateMemberArgs!) {
                 createMember(data: $member) {
                     id
                 }

@@ -161,9 +161,9 @@ export default {
       uploadProfilePicture(this.selectedFile).then(fileName => {
         this.member.picture = fileName;
 
-        createMember({
+          createMember({
           ...this.member,
-          studentId: this.selectedStudent.id
+          studentId: parseInt(this.selectedStudent.id)
         }).then(() => {
 
           // Emit a success notification

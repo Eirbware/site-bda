@@ -3,16 +3,27 @@
   <div class="w-full flex justify-between items-end">
     <!-- Nav item -->
     <div class="btn-group ml-10">
-      <router-link to="/" class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">Accueil</router-link>
-      <router-link to="/partentheses" class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">Partenthèses</router-link>
+      <router-link to="/"
+                   class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">
+        Accueil
+      </router-link>
+      <router-link to="/partentheses"
+                   class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">
+        Partenthèses
+      </router-link>
 
       <!-- Dropdown menu -->
       <div v-if="isMember" class="dropdown dropdown-end">
-        <label tabindex="0" class="btn bg-betterPrimary border-0 rounded-none rounded-r-lg w-44 hover:bg-betterPrimaryShadowed">Gestion</label>
+        <label tabindex="0"
+               class="btn bg-betterPrimary border-0 rounded-none rounded-r-lg w-44 hover:bg-betterPrimaryShadowed">Gestion</label>
         <ul tabindex="0" class="dropdown-content menu shadow bg-base-100 rounded-box w-full mt-1">
 
-          <li><router-link to="/dashboard/partentheses">Partenthèses</router-link></li>
-          <li><router-link to="/dashboard/partentheses-categories">Catégories</router-link></li>
+          <li>
+            <router-link to="/dashboard/partentheses">P'Art'enthèses</router-link>
+          </li>
+          <li>
+            <router-link to="/dashboard/partentheses-categories">Catégories</router-link>
+          </li>
 
           <li v-if="isAdmin">
             <router-link to="/dashboard/students">Étudiant.e.s
@@ -73,8 +84,8 @@ export default {
           }
         }
       `
-    }).then(({ data }) => {
-      if (data){
+    }).then(({data}) => {
+      if (data) {
         this.myStudent = data.myStudent;
       }
 

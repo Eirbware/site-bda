@@ -55,21 +55,21 @@ export function createMember(member: any) {
     return new Promise((resolve, reject) => {
         graphqlClient.mutate({
             mutation: gql`
-            mutation {
-                createMember(data: {
-                    studentId: ${member.studentId}
-                    title: "${member.title}"
-                    picture: "${member.picture}"
-                    description: "${member.description}"
-                    year: ${member.year}
-                    role: ${member.student.role}
-                }) {
+            mutation MemberCreation($member: CreateMemberArgs!) {
+                createMember(data: $member) {
                     id
                 }
             }
         `,
             variables: {
-                member: member
+                member: {
+                    title: member.title,
+                    picture: member.picture,
+                    description: member.description,
+                    year: member.year,
+                    role: member.student.role,
+                    studentId: member.studentId
+                }
             }
         }).then((response) => {
             resolve(response.data.createMember);
@@ -78,7 +78,6 @@ export function createMember(member: any) {
         });
     });
 }
-
 export function deleteMember(id: number) {
     return new Promise((resolve, reject) => {
         graphqlClient.mutate({

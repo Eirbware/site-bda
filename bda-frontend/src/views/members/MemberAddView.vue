@@ -90,9 +90,10 @@
 
                 <!-- Confirmation button -->
                 <div class="flex flex-row w-full justify-end">
-            <button
-                class="btn bg-green-300 hover:bg-green-400 border-0 w-[13.5rem] mr-5"
-                @click="onAddMemberButtonClick" :disabled="this.isMemberAlreadyExistingThisYear(member)">Valider</button>
+                  <button
+                      class="btn bg-green-300 hover:bg-green-400 border-0 w-[13.5rem] mr-5"
+                      @click="onAddMemberButtonClick" :disabled="this.isMemberAlreadyExistingThisYear(member)">Valider
+                  </button>
                 </div>
               </div>
             </div>
@@ -161,8 +162,9 @@ export default {
       uploadProfilePicture(this.selectedFile).then(fileName => {
         this.member.picture = fileName;
 
-          createMember({
+        createMember({
           ...this.member,
+          role: this.member.student.role,
           studentId: parseInt(this.selectedStudent.id)
         }).then(() => {
 

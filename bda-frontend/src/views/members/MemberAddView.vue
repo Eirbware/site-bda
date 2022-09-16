@@ -164,7 +164,6 @@ export default {
 
         createMember({
           ...this.member,
-          role: this.member.student.role,
           studentId: parseInt(this.selectedStudent.id)
         }).then(() => {
 

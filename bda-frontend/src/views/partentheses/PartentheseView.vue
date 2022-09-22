@@ -1,29 +1,21 @@
 <template>
-  <main class="py-2 px-12 flex-1 flex justify-center items-center">
+  <main class="py-2 px-2 lg:px-12 flex-1 flex justify-center items-center">
 
     <div class="w-full flex flex-row justify-center">
 
       <!-- Colored wrapper -->
-      <div class="rounded-2xl overflow-hidden bg-gray-200 shadow-2xl flex flex-col items-start py-10 px-24 w-[90rem]">
-
-        <!-- Breadcrumbs -->
-        <div class="text-sm breadcrumbs mb-5">
-          <ul>
-            <li><router-link to="/partentheses" class="badge">Liste des P'Art'enthèses</router-link></li>
-            <li><span class="badge">{{ partenthese.title }}</span></li>
-          </ul>
-        </div>
+      <div class="rounded-2xl overflow-hidden bg-gray-200 shadow-2xl flex flex-col items-start py-10 px-5 lg:px-24 w-[90rem]">
 
         <!-- Header -->
-        <div class="flex flex-row items-center justify-between w-full pb-5 mb-14 border-2 border-b-black">
-          <div class="flex flex-col items-start">
+        <div class="flex flex-col lg:flex-row items-center justify-between w-full pb-5 mb-14 border-2 border-b-black text-center lg:text-left">
+          <div class="flex flex-col lg:items-start">
             <div class="font-bold text-4xl mb-2">{{ partenthese.title }}</div>
             <div class="font-semibold text-2xl">{{ partenthese.partentheseCategory.name }}</div>
           </div>
 
           <div class="flex flex-col">
             <div class="uppercase font-bold text-xl">{{ partenthese.author.student.name }} {{ partenthese.author.student.surname }}</div>
-            <div class="text-right font-bold">{{ partenthese.year }}</div>
+            <div class="lg:text-right font-bold">{{ partenthese.year }}</div>
           </div>
         </div>
 

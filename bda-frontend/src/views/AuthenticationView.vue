@@ -1,10 +1,10 @@
 <template>
 
-  <main class="w-full flex-1 flex justify-center items-center">
+  <main class="w-full flex-1 flex justify-center items-center px-2 lg:px-0">
 
     <div class="w-[50rem] flex flex-col">
 
-      <div class="bg-gray-200 py-7 px-10 rounded-xl mb-5">
+      <div class="bg-gray-200 py-7 px-5 lg:px-10 rounded-xl mb-5">
         <div class="uppercase text-3xl font-bold mb-5">Confidentialité</div>
 
         <p class="mb-5">
@@ -29,7 +29,7 @@
       </div>
 
       <a :href="authUrl"
-         class="btn ">
+         class="btn mb-4 lg:mb-0">
         Se connecter avec le CAS
       </a>
     </div>

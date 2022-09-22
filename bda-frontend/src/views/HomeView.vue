@@ -8,7 +8,7 @@
   </div>
 
   <div class="w-full flex justify-center">
-    <div class="w-3/4 bg-white rounded-lg p-5 text-center shadow-xl">
+    <div class="w-11/12 lg:w-3/4 bg-white rounded-lg p-5 text-center shadow-xl">
       <p class="pb-2">Que vous soyez un artiste en Eirb, un grand amateur d'arts ou un débutant en soif de culture, nous sommes là pour vous !</p>
       <p class="pb-2">Le Bureau des Arts de l'ENSEIRB-MATMECA est l'association qui regroupe les clubs artistiques de l'école, et il y en a pour tous les goûts !</p>
       <p class="pb-2">Laissez-nous vous faire découvrir ce qui se fait de mieux à Bordeaux: ne loupez pas nos événements et profitez des nombreux partenariats que nous avons liés avec les établissements et les artistes !</p>
@@ -26,7 +26,7 @@
         <!-- Left bar -->
         <div class="w-[30%] h-1 bg-white rounded-xl shadow-2xl"></div>
 
-        <div class="text-4xl font-bold w-[20%] text-center outline shadow-2xl relative" >
+        <div class="text-4xl font-bold w-[30%] lg:w-[20%] text-center outline shadow-2xl relative p-2 lg:p-0" >
           <span>{{ year }}</span>
           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-10" style="z-index: -1"></div>
         </div>
@@ -38,7 +38,7 @@
       <!-- Members -->
       <div class="flex justify-center items-center">
         <div class="w-3/4 flex flex-row justify-evenly flex-wrap">
-          <div v-for="member in members[year].sort((a, b) => a.order - b.order)" class="card w-80 bg-base-100 shadow-xl relative">
+          <div v-for="member in members[year].sort((a, b) => a.order - b.order)" class="card w-80 bg-base-100 shadow-xl relative mb-5 lg:mb-0">
 
             <!-- Text description -->
             <div class="absolute top-0 left-0 w-full h-full bg-black opacity-0 hover:opacity-80 transition duration-300 ease-in-out flex flex-col justify-center items-center">

@@ -3,7 +3,9 @@
     <img src="./assets/backgrounds/waves-optimized.svg" alt="background" class="w-full h-full object-cover">
   </div>
 
-  <Header />
+  <!-- Header if the user is not on mobile -->
+  <Header v-if="!isMobile" />
+  <MobileHeader v-else />
 
   <router-view></router-view>
 
@@ -17,10 +19,11 @@
 import {emitter} from "./emitter";
 import Notification from "@/components/Notification.vue";
 import Header from "@/components/Header.vue";
+import MobileHeader from "@/components/MobileHeader.vue";
 
 export default {
   name: 'App',
-  components: {Notification, Header},
+    components: {MobileHeader, Notification, Header},
   data() {
     return {
       currentNotification: null,
@@ -34,6 +37,11 @@ export default {
         this.currentNotification = null;
       }, 3000);
     });
+  },
+  computed: {
+    isMobile() {
+      return window.innerWidth <= 768;
+    }
   },
   methods: {
     handleMouseEnter() {

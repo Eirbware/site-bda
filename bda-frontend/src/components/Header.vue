@@ -9,7 +9,7 @@
       </router-link>
       <router-link to="/partentheses"
                    class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">
-        Partenthèses
+        P'Art'enthèses
       </router-link>
 
       <!-- Dropdown menu -->

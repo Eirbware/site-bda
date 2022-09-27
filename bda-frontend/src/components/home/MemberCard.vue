@@ -10,7 +10,7 @@
     <!-- Member picture -->
     <figure class="overflow-hidden h-56 flex items-start">
       <img v-if="member.picture !== ''" :src="`${this.backendUrl}/images/members/${member.picture}`"
-           alt="Photo membre" class="h-full min-w-full"/>
+           alt="Photo membre" class="w-full"/>
       <div class="w-full" v-else v-html="getIdenticon(member.student.email)"></div>
     </figure>
 

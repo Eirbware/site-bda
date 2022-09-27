@@ -136,7 +136,7 @@ export default {
     },
     onStudentClick(student) {
       this.selectedStudent = student;
-      Object.keys(this.student).forEach((key) => {
+      Object.keys(student).forEach((key) => {
         this.student[key] = student[key];
       });
 

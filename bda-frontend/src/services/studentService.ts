@@ -197,6 +197,11 @@ export function getStudentByUid(uid: string) {
                 }
             }`
         }).then(({data}) => {
+            if (!data) {
+                resolve(null);
+                return;
+            }
+
             resolve(data.studentByUid);
         }).catch((error) => {
             reject(error);

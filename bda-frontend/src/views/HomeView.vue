@@ -38,7 +38,7 @@
       <!-- Members -->
       <div class="flex justify-center items-center">
         <div class="w-3/4 flex flex-row justify-evenly flex-wrap">
-          <div v-for="member in members[year].sort((a, b) => a.order - b.order)" class="card w-80 bg-base-100 shadow-xl relative mb-5 lg:mb-0">
+          <div v-for="member in members[year].sort((a, b) => a.order - b.order)" class="card w-80 bg-base-100 shadow-xl relative mb-5">
 
             <!-- Text description -->
             <div class="absolute top-0 left-0 w-full h-full bg-black opacity-0 hover:opacity-80 transition duration-300 ease-in-out flex flex-col justify-center items-center">

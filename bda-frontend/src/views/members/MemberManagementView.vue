@@ -83,8 +83,14 @@ export default {
   methods: {
     reloadList() {
       getAllMembers().then((members) => {
-        // Sort members by increasing order
-        const sortedMembers = members.sort((a, b) => a.order - b.order);
+        // Sort members by decreasing year and then by increasing order
+        const sortedMembers = members.sort((a, b) => {
+          if (a.year === b.year) {
+            return a.order - b.order;
+          } else {
+            return b.year - a.year;
+          }
+        });
 
         this.members = sortedMembers;
         this.backupMembers = sortedMembers;

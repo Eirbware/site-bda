@@ -8,7 +8,7 @@
     </div>
 
     <!-- Member picture -->
-    <figure class="overflow-hidden h-56 flex items-start">
+    <figure class="overflow-hidden h-56 flex" style="align-items: flex-start !important;"> <!-- Fuck you DaisyUI -->
       <img v-if="member.picture !== ''" :src="`${this.backendUrl}/images/members/${member.picture}`"
            alt="Photo membre" class="w-full"/>
       <div class="w-full" v-else v-html="getIdenticon(member.student.email)"></div>

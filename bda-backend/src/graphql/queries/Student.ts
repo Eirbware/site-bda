@@ -210,6 +210,10 @@ export class StudentResolver {
             }
         });
 
+        if (!student) {
+            return null;
+        }
+
         student.member = studentGetMostRecentMember(student);
 
         return student;

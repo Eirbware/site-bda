@@ -7,14 +7,14 @@ const multerStorage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/images/members');
     },
-    filename(req: Request, file: Express.Multer.File, callback: (error: (Error | null), filename: string) => void) {
+    filename(req: Request, file: any, callback: (error: (Error | null), filename: string) => void) {
         callback(null, `${Date.now()}-${file.originalname}`);
     }
 });
 
 const multerUpload = multer({
     storage: multerStorage,
-    fileFilter(req: Request, file: Express.Multer.File, callback: multer.FileFilterCallback) {
+    fileFilter(req: Request, file: any, callback: multer.FileFilterCallback) {
         // Get the file extension
         const extension = file.originalname.split('.').pop();
 

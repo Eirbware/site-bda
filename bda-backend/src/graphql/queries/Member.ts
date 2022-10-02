@@ -1,9 +1,10 @@
-import {Arg, Authorized, Ctx, Field, ID, InputType, Mutation, ObjectType, Query, Resolver} from "type-graphql";
+import {Arg, Authorized, Ctx, Field, InputType, Mutation, Query, Resolver} from "type-graphql";
 import {GraphqlContext} from "../graphqlContext";
 import prismaClient from "../../clients/prismaClient";
-import {Role} from "@prisma/client";
+import {Member as PrismaMember, Role} from "@prisma/client";
 import {Member} from "../types/Member";
 import {unlink} from "fs";
+import {getMostRecentMember} from "./utils";
 
 @InputType()
 class DeleteMemberArgs implements Partial<Member> {
@@ -71,7 +72,7 @@ export class MemberResolver {
     @Mutation(returns => Boolean!, {nullable: true})
     async deleteMember(@Arg("data") deleteMemberArgs: DeleteMemberArgs): Promise<void> {
         // Delete the picture from the server
-        const member = await prismaClient.member.findUnique({
+        const member: any = await prismaClient.member.findUnique({
             where: {
                 id: deleteMemberArgs.id
             }
@@ -119,7 +120,7 @@ export class MemberResolver {
             data.order = updateMemberArgs.order;
         }
 
-        const user = await prismaClient.member.update({
+        const member: any = await prismaClient.member.update({
             where: {
                 id: updateMemberArgs.id
             },
@@ -129,16 +130,16 @@ export class MemberResolver {
             }
         });
 
-        if (!user) {
-            throw new Error(`User not found`);
+        if (!member) {
+            throw new Error(`Member not found`);
         }
 
-        // Update the user's role
+        // Update the member's role
         if (updateMemberArgs.role) {
             // Find student associated with this member
             await prismaClient.student.update({
                 where: {
-                    id: user.studentId
+                    id: member.studentId
                 },
                 data: {
                     role: updateMemberArgs.role
@@ -146,13 +147,13 @@ export class MemberResolver {
             });
         }
 
-        return user;
+        return member;
     }
 
 
     @Authorized([Role.ADMIN])
     @Mutation(of => Member)
-    async createMember(@Arg("data") createMemberArgs: CreateMemberArgs): Promise<Member> {
+    async createMember(@Arg("data") createMemberArgs: CreateMemberArgs){
         const student = await prismaClient.student.findUnique({
             where: {
                 id: createMemberArgs.studentId
@@ -214,12 +215,12 @@ export class MemberResolver {
     }
 
     @Query(returns => Member)
-    async myMember(@Ctx() context: GraphqlContext): Promise<Member> {
+    async myMember(@Ctx() context: GraphqlContext) {
         if (!context.user) {
             throw new Error(`User not authenticated`);
         }
 
-        const member = await prismaClient.member.findUnique({
+        const members = await prismaClient.member.findMany({
             where: {
                 id: context.user.id
             },
@@ -228,15 +229,15 @@ export class MemberResolver {
             }
         });
 
-        if (!member) {
+        if (!members) {
             throw new Error(`Member not found`);
         }
 
-        return member;
+        return getMostRecentMember(members as PrismaMember[]);
     }
 
     @Query(returns => [Member])
-    async members(): Promise<Member[]> {
+    async members() {
         const users = await prismaClient.member.findMany({
             include: {
                 student: true
@@ -248,7 +249,7 @@ export class MemberResolver {
 
     @Query(returns => Member)
     async member(@Arg("id") id: number) {
-        return await prismaClient.member.findFirst({
+        const members = await prismaClient.member.findMany({
             where: {
                 id: id
             },
@@ -256,5 +257,11 @@ export class MemberResolver {
                 student: true
             }
         });
+
+        if (!members) {
+            throw new Error(`Member not found`);
+        }
+
+        return getMostRecentMember(members as PrismaMember[]);
     }
 }

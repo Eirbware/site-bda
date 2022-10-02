@@ -4,6 +4,7 @@ import {Student} from "../types/Student";
 import prismaClient from "../../clients/prismaClient";
 import {GraphqlContext} from "../graphqlContext";
 import redisClient from "../../clients/redisClient";
+import {studentGetMostRecentMember} from "./utils";
 
 @InputType()
 class DeleteStudentArgs implements Partial<Student> {
@@ -52,7 +53,7 @@ export class StudentResolver {
     @Authorized([Role.ADMIN])
     @Mutation(returns => Boolean!, {nullable: true})
     async deleteStudent(@Arg("data") deleteStudentArgs: DeleteStudentArgs): Promise<void> {
-        await prismaClient.member.delete({
+        await prismaClient.member.deleteMany({
             where: {
                 studentId: deleteStudentArgs.id
             }
@@ -151,7 +152,7 @@ export class StudentResolver {
             throw new Error("User not authenticated");
         }
 
-        const student = await prismaClient.student.findUnique({
+        const student: any = await prismaClient.student.findUnique({
             where: {
                 id: context.user.id
             },
@@ -164,21 +165,27 @@ export class StudentResolver {
             throw new Error(`Student not found`);
         }
 
+        student.member = studentGetMostRecentMember(student);
+
         return student;
     }
 
     @Query(returns => [Student])
     async students() {
-        return await prismaClient.student.findMany({
+        let students: any = await prismaClient.student.findMany({
             include: {
                 member: true
             }
         });
+
+        students.member = studentGetMostRecentMember(students);
+
+        return students;
     }
 
     @Query(returns => Student)
     async student(@Arg("id") id: number) {
-        return await prismaClient.student.findUnique({
+         let student: any = await prismaClient.student.findUnique({
             where: {
                 id
             },
@@ -186,11 +193,15 @@ export class StudentResolver {
                 member: true
             }
         });
+
+        student.member = studentGetMostRecentMember(student);
+
+        return student;
     }
 
     @Query(returns => Student)
     async studentByUid(@Arg("uid") uid: string) {
-        return await prismaClient.student.findUnique({
+        let student: any = await prismaClient.student.findUnique({
             where: {
                 uid
             },
@@ -198,6 +209,10 @@ export class StudentResolver {
                 member: true
             }
         });
+
+        student.member = studentGetMostRecentMember(student);
+
+        return student;
     }
 }
 

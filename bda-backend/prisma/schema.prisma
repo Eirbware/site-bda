@@ -12,13 +12,15 @@ datasource db {
 }
 
 model Student {
-  id      Int     @id @default(autoincrement())
+  id      Int    @id @default(autoincrement())
   name    String
   surname String
-  uid     String  @unique
-  email   String  @unique
-  member  Member?
-  role    Role    @default(USER)
+  uid     String @unique
+  email   String @unique
+
+  member Member[]
+
+  role Role @default(USER)
 }
 
 model Member {

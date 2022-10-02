@@ -30,7 +30,7 @@ model Member {
   description String
 
   student   Student @relation(fields: [studentId], references: [id])
-  studentId Int     @unique
+  studentId Int
 
   year               Int
   partentheses       Partenthese[] @relation("author")

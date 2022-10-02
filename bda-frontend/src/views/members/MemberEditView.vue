@@ -26,8 +26,8 @@
             <div class="avatar mb-5 w-full mr-5">
               <div class="rounded">
                 <img :src="this.selectedFileData" v-if="selectedFileData" alt="Photo"/>
-                <img v-else-if="this.member.picture" :src="`${this.backendUrl}/images/members/${this.member.picture}`" alt="Photo"/>
-                <div class="w-full" v-else v-html="getIdenticon(this.identiconSeed)"/>
+                <img v-else-if="this.member.picture" :src="`${this.backendUrl}/images/members/${this.member.picture}`" alt="Selected Member Picture"/>
+                <img v-else src="@/assets/member.png" alt="Default Member Picture"/>
               </div>
             </div>
 
@@ -90,11 +90,10 @@
 </template>
 
 <script>
-import {getMember, getMyMember, updateMember} from "@/services/memberService";
+import {getMember, updateMember} from "@/services/memberService";
 import Header from "@/components/Header.vue";
 import {emitter} from "@/emitter";
 import {uploadProfilePicture} from "@/services/uploadService";
-import {toSvg} from "jdenticon";
 import {getMyStudent} from "@/services/studentService";
 
 export default {
@@ -115,7 +114,6 @@ export default {
       },
       selectedFile: null,
       selectedFileData: null,
-      identiconSeed: new Date().toISOString(),
       me: {
         role: ""
       }
@@ -134,8 +132,6 @@ export default {
         message: error
       });
     });
-
-
   },
   methods: {
     onModifyMemberButtonClick() {
@@ -184,11 +180,6 @@ export default {
 
       inputElement.click();
     },
-    getIdenticon(value) {
-      return toSvg(value, 100, {
-        backColor: "#ffffff",
-      }).replace("<svg", "<svg width=\"100%\" height=\"auto\"");
-    }
   },
   computed: {
     backendUrl() {

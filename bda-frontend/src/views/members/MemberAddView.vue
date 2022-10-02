@@ -73,8 +73,8 @@
                     <!-- Preview -->
                     <div class="avatar mb-5 w-[13.5rem] mr-5">
                       <div class="rounded">
-                        <img :src="this.selectedFileData" v-if="selectedFileData" alt=""/>
-                        <div class="w-full" v-else v-html="getIdenticon(this.identiconSeed)"/>
+                        <img :src="this.selectedFileData" v-if="selectedFileData" alt="Selected Membed Picture"/>
+                        <img src="@/assets/member.png" v-else alt="Default Member Picture"/>
                       </div>
                     </div>
 
@@ -109,7 +109,6 @@ import Header from "@/components/Header.vue";
 import {getAllStudents, getMyStudent} from "@/services/studentService";
 import {emitter} from "@/emitter";
 import {createMember} from "@/services/memberService";
-import {toSvg} from "jdenticon";
 import {uploadProfilePicture} from "@/services/uploadService";
 
 export default {
@@ -134,7 +133,6 @@ export default {
       },
       selectedFile: null,
       selectedFileData: null,
-      identiconSeed: new Date().toISOString(),
       me: {
         role: ""
       }
@@ -203,12 +201,6 @@ export default {
       return this.backupStudents
           .filter(s => (s.uid === this.selectedStudent.uid) && (s.member !== null && s.member.year === member.year))
           .length > 0
-    },
-    getIdenticon(value) {
-      // Add width=100% to the svg to make it responsive
-      return toSvg(value, 100, {
-        backColor: "#ffffff",
-      }).replace("<svg", "<svg width=\"100%\" height=\"auto\"");
     },
     onChangeAvatarButtonClick() {
       // Open a file selection dialog for images and store it in this.selectedFile

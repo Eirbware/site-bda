@@ -330,11 +330,6 @@
   dependencies:
     axios "*"
 
-"@types/node@*":
-  version "18.7.16"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.16.tgz#0eb3cce1e37c79619943d2fd903919fc30850601"
-  integrity sha512-EQHhixfu+mkqHMZl1R2Ovuvn47PUw18azMJOTwSZr9/fhzHNGXAJ0ma0dayRVchprpCj0Kc1K1xKoWaATWF1qg==
-
 "@vitejs/plugin-vue@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-3.1.0.tgz#3a423ea6943a450e806da412a911150e928598ed"
@@ -640,13 +635,6 @@ caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
   version "1.0.30001390"
   resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001390.tgz"
   integrity sha512-sS4CaUM+/+vqQUlCvCJ2WtDlV81aWtHhqeEVkLokVJJa3ViN4zDxAGfq9R8i1m90uGHxo99cy10Od+lvn3hf0g==
-
-canvas-renderer@~2.2.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/canvas-renderer/-/canvas-renderer-2.2.1.tgz#c1d131f78a9799aca8af9679ad0a005052b65550"
-  integrity sha512-RrBgVL5qCEDIXpJ6NrzyRNoTnXxYarqm/cS/W6ERhUJts5UQtt/XPEosGN3rqUkZ4fjBArlnCbsISJ+KCFnIAg==
-  dependencies:
-    "@types/node" "*"
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -1412,13 +1400,6 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/isexe/-/isexe-2.0.0.tgz"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
-
-jdenticon@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/jdenticon/-/jdenticon-3.2.0.tgz#b5b9ef413cb66f70c600d6e69a764c977f248a46"
-  integrity sha512-z6Iq3fTODUMSOiR2nNYrqigS6Y0GvdXfyQWrUby7htDHvX7GNEwaWR4hcaL+FmhEgBe08Xkup/BKxXQhDJByPA==
-  dependencies:
-    canvas-renderer "~2.2.0"
 
 js-cookie@^3.0.1:
   version "3.0.1"

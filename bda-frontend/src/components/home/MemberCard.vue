@@ -1,17 +1,10 @@
 <template>
   <div class="card w-80 bg-base-100 shadow-xl relative mb-5">
-
-    <!-- Text description -->
-    <div class="absolute top-0 left-0 w-full h-full bg-black opacity-0 hover:opacity-80 transition duration-300 ease-in-out flex flex-col justify-center items-center">
-      <div class="text-white text-2xl font-bold">{{ member.student.name }}</div>
-      <div class="text-white text-lg">{{ member.description }}</div>
-    </div>
-
     <!-- Member picture -->
     <figure class="overflow-hidden h-56 flex" style="align-items: flex-start !important;"> <!-- Fuck you DaisyUI -->
       <img v-if="member.picture !== ''" :src="`${this.backendUrl}/images/members/${member.picture}`"
            alt="Photo membre" class="w-full"/>
-      <div class="w-full" v-else v-html="getIdenticon(member.student.email)"></div>
+      <img v-else src="@/assets/member.png" class="w-full" alt="Default member image"/>
     </figure>
 
     <!-- Card body -->
@@ -24,20 +17,12 @@
 </template>
 
 <script>
-import {toSvg} from "jdenticon";
-
 export default {
   name: "MemberCard",
   props: {
     member: {
       type: Object,
       required: true
-    }
-  },
-  methods: {
-    getIdenticon(value) {
-      // Add width=100% to the svg to make it responsive
-      return toSvg(value, 100).replace("<svg", "<svg width=\"100%\"");
     }
   },
   computed: {

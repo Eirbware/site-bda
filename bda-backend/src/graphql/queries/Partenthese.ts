@@ -95,7 +95,7 @@ export class PartentheseResolver {
                     }
 
                     // The current member has a year equal or greater than all members
-                    return resolve(members.every(m => member.year >= m.year));
+                    return resolve(members.every((m: any) => member.year >= m.year));
                 }).catch(err => {
                     return reject(err);
                 })
@@ -114,7 +114,7 @@ export class PartentheseResolver {
             throw new Error("User is not a member of any year");
         }
 
-        const memberOfCurrentBureau: Member = members.find(m => isMemberOfCurrentBureau(m));
+        const memberOfCurrentBureau: Member = members.find((m: Member) => isMemberOfCurrentBureau(m));
 
         return prismaClient.partenthese.create({
             data: {

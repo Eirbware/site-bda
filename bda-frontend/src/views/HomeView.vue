@@ -48,7 +48,6 @@
 
 <script>
 import {getAllMembers} from "@/services/memberService";
-import {toSvg} from "jdenticon";
 import {emitter} from "@/emitter";
 import Header from "@/components/Header.vue";
 import MemberCard from "@/components/home/MemberCard.vue";

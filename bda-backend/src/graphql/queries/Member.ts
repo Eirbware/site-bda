@@ -166,8 +166,10 @@ export class MemberResolver {
 
         const isMember = await prismaClient.member.findFirst({
             where: {
-                studentId: createMemberArgs.studentId,
-                year: createMemberArgs.year
+                AND: [
+                    { studentId: createMemberArgs.studentId },
+                    { year: createMemberArgs.year }
+                ]
             }
         });
 

@@ -3,7 +3,7 @@
   <div class="w-full flex justify-center mt-2 items-center mb-10">
     <!-- Logo -->
     <div class="h-72 bg-white w-auto w-auto rounded-[50%] p-8 shadow-2xl shadow-2xl">
-      <img src="../assets/logo.svg" alt="logo-BDA" class="w-full h-full"/>
+      <img src="../assets/logo.png" alt="logo-BDA" class="w-full h-full"/>
     </div>
   </div>
 

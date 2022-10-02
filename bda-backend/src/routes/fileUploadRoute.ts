@@ -44,7 +44,7 @@ export default (app: Express) => {
         const {buffer, originalname} = req.file;
         const ref = `${Date.now()}-${originalname}.webp`;
         await sharp(buffer)
-            .webp({quality: 20})
+            .webp({quality: 80})
             .resize({
                 width: 450,
                 height: 300,

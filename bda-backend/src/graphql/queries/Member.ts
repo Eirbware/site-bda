@@ -153,7 +153,7 @@ export class MemberResolver {
 
     @Authorized([Role.ADMIN])
     @Mutation(of => Member)
-    async createMember(@Arg("data") createMemberArgs: CreateMemberArgs){
+    async createMember(@Arg("data") createMemberArgs: CreateMemberArgs) {
         const student = await prismaClient.student.findUnique({
             where: {
                 id: createMemberArgs.studentId
@@ -167,14 +167,35 @@ export class MemberResolver {
         const isMember = await prismaClient.member.findFirst({
             where: {
                 AND: [
-                    { studentId: createMemberArgs.studentId },
-                    { year: createMemberArgs.year }
+                    {studentId: createMemberArgs.studentId},
+                    {year: createMemberArgs.year}
                 ]
             }
         });
 
         if (isMember) {
             throw new Error(`Étudiant.e déjà membre pour cette année`);
+        }
+
+        // Get the order of all members for this year
+        const members = await prismaClient.member.findMany({
+            where: {
+                year: createMemberArgs.year
+            },
+            select: {
+                order: true
+            }
+        });
+
+        // Get the highest order
+        let order = -1;
+
+        if (members) {
+            for (const member of members) {
+                if (member.order > order) {
+                    order = member.order;
+                }
+            }
         }
 
         const member = await prismaClient.member.create({
@@ -187,7 +208,8 @@ export class MemberResolver {
                     connect: {
                         id: createMemberArgs.studentId
                     }
-                }
+                },
+                order: order + 1
             },
             include: {
                 student: true

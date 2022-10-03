@@ -37,6 +37,10 @@
             </router-link>
           </li>
 
+          <li v-if="isAdmin">
+            <a @click="onDebugButtonClick">Debug</a>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -60,6 +64,7 @@ import {emitter} from "@/emitter";
 import {logoutUser} from "@/services/authenticationService";
 import graphqlClient from "@/utils/graphqlClient";
 import {gql} from "graphql-tag";
+import axios from "axios";
 
 export default {
   name: "Header",
@@ -119,6 +124,14 @@ export default {
           type: "error",
           message: error
         });
+      });
+    },
+    onDebugButtonClick() {
+      axios.get("https://bda.eirb.fr/api/debug")
+          .then(response => {
+            console.log(response);
+          }).catch(error => {
+            console.error(error);
       });
     }
   },

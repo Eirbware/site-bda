@@ -92,10 +92,10 @@ APP.use(bodyParser.json());
         cors: false,
     });
 
+    debugRoute(APP);
     authenticationRoute(APP);
     fileUploadRoute(APP);
     staticRoute(APP);
-    debugRoute(APP);
 
     APP.listen(PORT, () => {
         console.log(`[*] Server is running on port ${PORT}`);

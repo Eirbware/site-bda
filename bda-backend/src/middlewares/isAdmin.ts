@@ -13,4 +13,12 @@ export default (request: Request, response: Response, next: () => void) => {
     if (request.session.user.role === Role.ADMIN) {
         next();
     }
+
+    // Otherwise, the user is not admin
+    return response.status(401).json({
+        success: false,
+        error: {
+            message: 'User not admin'
+        }
+    });
 }

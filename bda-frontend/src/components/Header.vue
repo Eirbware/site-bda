@@ -127,7 +127,7 @@ export default {
       });
     },
     onDebugButtonClick() {
-      axios.get("https://bda.eirb.fr/api/debug")
+      axios.get("https://bda.eirb.fr/api/debug", { withCredentials: true })
           .then(response => {
             console.log(response);
           }).catch(error => {

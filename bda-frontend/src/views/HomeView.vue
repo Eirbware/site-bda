@@ -11,7 +11,7 @@
     <div class="w-11/12 lg:w-3/4 bg-white rounded-lg p-5 text-center shadow-xl">
       <p class="pb-2">Que vous soyez un artiste en Eirb, un grand amateur d'arts ou un débutant en soif de culture, nous sommes là pour vous !</p>
       <p class="pb-2">Le Bureau des Arts de l'ENSEIRB-MATMECA est l'association qui regroupe les clubs artistiques de l'école, et il y en a pour tous les goûts !</p>
-      <p class="pb-2">Laissez-nous vous faire découvrir ce qui se fait de mieux à Bordeaux: ne loupez pas nos événements et profitez des nombreux partenariats que nous avons liés avec les établissements et les artistes !</p>
+      <p class="pb-2">Laissez-nous vous faire découvrir ce qui se fait de mieux à Bordeaux: ne loupez pas nos événements et profitez des nombreux partenariats que nous avons lié avec les établissements et les artistes !</p>
       <p>Votre BDA dynamique tisse des liens avec ceux d'autres écoles pour vous présenter toujours plus d'animations et d'expériences inoubliables.</p>
     </div>
   </div>

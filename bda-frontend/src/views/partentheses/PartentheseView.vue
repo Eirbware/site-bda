@@ -53,7 +53,7 @@ export default {
       },
     };
   },
-  mounted() {
+  created() {
     graphqlClient.query({
       query: gql`
         query {

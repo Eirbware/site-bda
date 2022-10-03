@@ -1,5 +1,5 @@
 <template>
-  <div class="card w-80 bg-base-100 shadow-xl relative mb-5">
+  <div class="card w-80 bg-base-100 relative mb-5">
     <!-- Member picture -->
     <figure class="overflow-hidden h-56 flex" style="align-items: flex-start !important;"> <!-- Fuck you DaisyUI -->
       <img v-if="member.picture !== ''" :src="`${this.backendUrl}/images/members/${member.picture}`"
@@ -13,7 +13,6 @@
       <p class="w-full text-center">{{ member.title }}</p>
     </div>
   </div>
-
 </template>
 
 <script>

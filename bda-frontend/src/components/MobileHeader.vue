@@ -17,7 +17,7 @@
 
     <div v-if="menuOpen" class="w-full px-2 pb-2 absolute flex flex-col items-center">
 
-      <div class="p-2 rounded-lg bg-betterPrimary shadow-2xl w-full flex flex-col" id="drawer">
+      <div class="p-2 rounded-lg bg-betterPrimary shadow-2xl w-full flex flex-col">
         <router-link @click="onLinkClick" to="/" class="py-2  border-b-gray-300 border-b-2 last:border-0 w-full flex justify-center items-center text-white text-xl font-sans">Accueil</router-link>
         <router-link @click="onLinkClick" to="/partentheses" class="py-2  border-b-gray-300 border-b-2 last:border-0 w-full flex justify-center items-center text-white text-xl font-sans">P'Art'enthèses</router-link>
         <router-link @click="onLinkClick" to="/auth" v-if="!isLoggedIn" class="py-2  border-b-gray-300 border-b-2 last:border-0 w-full flex justify-center items-center text-white text-xl font-sans">Connexion</router-link>
@@ -37,10 +37,7 @@ export default {
         member: null,
         role: 'USER'
       },
-      menuOpen: false,
-      links: [
-
-      ]
+      menuOpen: false
     }
   },
   computed: {
@@ -74,8 +71,4 @@ export default {
 </script>
 
 <style scoped>
-/* Animation from top to bottom */
-#drawer {
-  animation: slidein 1s ease-in-out;
-}
 </style>

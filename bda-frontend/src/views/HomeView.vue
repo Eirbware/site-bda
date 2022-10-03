@@ -24,15 +24,15 @@
       <div class="flex flex-row justify-evenly items-center w-full mb-10">
 
         <!-- Left bar -->
-        <div class="w-[30%] h-1 bg-white rounded-xl shadow-2xl"></div>
+        <div class="w-[30%] h-1 bg-white rounded-xl"></div>
 
-        <div class="text-4xl font-bold w-[30%] lg:w-[20%] text-center outline shadow-2xl relative p-2 lg:p-0" >
+        <div class="text-4xl font-bold w-[30%] lg:w-[20%] text-center outline relative p-2 lg:p-0" >
           <span>{{ year }}</span>
           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-10" style="z-index: -1"></div>
         </div>
 
         <!-- Right bar -->
-        <div class="w-[30%] h-1 bg-white rounded-xl shadow-2xl shadow-black"></div>
+        <div class="w-[30%] h-1 bg-white rounded-xl"></div>
       </div>
 
       <!-- Members -->
@@ -63,7 +63,7 @@ export default {
       rawMembers: [],
     }
   },
-  mounted() {
+  created() {
     getAllMembers().then(members => {
       this.rawMembers = members;
     }).catch(error => {

@@ -1,8 +1,4 @@
 <template>
-  <div class="absolute w-full h-full" style="z-index: -1">
-    <img src="./assets/backgrounds/waves-optimized.svg" alt="background" class="w-full h-full object-cover">
-  </div>
-
   <!-- Header if the user is not on mobile -->
   <Header v-if="!isMobile" />
   <MobileHeader v-else />

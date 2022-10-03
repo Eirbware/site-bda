@@ -3,12 +3,14 @@
   <div class="w-full flex justify-between items-end">
     <!-- Nav item -->
     <div class="btn-group ml-10">
-      <router-link to="/"
-                   class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">
+      <router-link
+          to="/"
+          class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">
         Accueil
       </router-link>
-      <router-link to="/partentheses"
-                   class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">
+      <router-link
+          to="/partentheses"
+          class="btn bg-betterPrimary border-0 w-44 rounded-none rounded-l-lg last:rounded-lg hover:bg-betterPrimaryShadowed">
         P'Art'enthèses
       </router-link>
 

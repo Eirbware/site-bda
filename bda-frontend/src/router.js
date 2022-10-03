@@ -1,31 +1,16 @@
 import {createRouter, createWebHashHistory} from "vue-router";
-
-import MemberManagementView from "@/views/members/MemberManagementView.vue";
-import AuthenticationView from "@/views/AuthenticationView.vue";
 import {getMyStudent} from "@/services/studentService";
-import StudentManagementView from "@/views/students/StudentManagementView.vue";
-import StudentAddView from "@/views/students/StudentAddView.vue";
-import MemberAddView from "@/views/members/MemberAddView.vue";
-import StudentEditView from "@/views/students/StudentEditView.vue";
-import MemberEditView from "@/views/members/MemberEditView.vue";
-import HomeView from "@/views/HomeView.vue";
-import CategoryManagementView from "@/views/categories/CategoryManagementView.vue";
-import PartentheseManagementView from "@/views/partentheses/PartentheseManagementView.vue";
-import PartentheseAddView from "@/views/partentheses/PartentheseAddView.vue";
-import PartentheseEditView from "@/views/partentheses/PartentheseEditView.vue";
-import PartentheseListView from "@/views/partentheses/PartentheseListView.vue";
-import PartentheseView from "@/views/partentheses/PartentheseView.vue";
 
 const routes = [
     {
         path: "/",
         name: "Home",
-        component: HomeView
+        component: () => import("@/views/HomeView.vue"),
     },
     {
         path: "/auth",
         name: "Authentification",
-        component: AuthenticationView,
+        component: () => import("@/views/AuthenticationView.vue"),
         meta: {
             requiresAuth: false
         }
@@ -33,7 +18,7 @@ const routes = [
     {
         path: "/dashboard/members",
         name: "Gestion des membres",
-        component: MemberManagementView,
+        component: () => import("@/views/members/MemberManagementView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN"]
@@ -42,7 +27,7 @@ const routes = [
     {
         path: "/dashboard/students",
         name: "Gestion des étudiants",
-        component: StudentManagementView,
+        component: () => import("@/views/students/StudentManagementView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN"]
@@ -51,7 +36,7 @@ const routes = [
     {
         path: "/dashboard/students/add",
         name: "Ajouter un.e étudiant.e",
-        component: StudentAddView,
+        component: () => import("@/views/students/StudentAddView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN"]
@@ -60,7 +45,7 @@ const routes = [
     {
         path: "/dashboard/members/add",
         name: "Ajouter un.e membre",
-        component: MemberAddView,
+        component: () => import("@/views/members/MemberAddView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN"]
@@ -69,7 +54,7 @@ const routes = [
     {
         path: "/dashboard/students/:id/edit",
         name: "Modifier un.e étudiant.e",
-        component: StudentEditView,
+        component: () => import("@/views/students/StudentEditView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN"]
@@ -78,7 +63,7 @@ const routes = [
     {
         path: "/dashboard/members/:id/edit",
         name: "Modifier un.e membre",
-        component: MemberEditView,
+        component: () => import("@/views/members/MemberEditView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN"]
@@ -87,7 +72,7 @@ const routes = [
     {
         path: "/dashboard/partentheses-categories",
         name: "Gestion des catégories",
-        component: CategoryManagementView,
+        component: () => import("@/views/categories/CategoryManagementView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN", "PPC", "MEMBER"]
@@ -96,7 +81,7 @@ const routes = [
     {
         path: "/dashboard/partentheses",
         name: "Gestion des parenthèses",
-        component: PartentheseManagementView,
+        component: () => import("@/views/partentheses/PartentheseManagementView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN", "PPC", "MEMBER"]
@@ -105,7 +90,7 @@ const routes = [
     {
         path: "/dashboard/partentheses/add",
         name: "Ajout de partenthèse",
-        component: PartentheseAddView,
+        component: () => import("@/views/partentheses/PartentheseAddView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN", "PPC", "MEMBER"]
@@ -114,7 +99,7 @@ const routes = [
     {
         path: "/dashboard/partentheses/:id/edit",
         name: "Modifier une p'Art'enthèse",
-        component: PartentheseEditView,
+        component: () => import("@/views/partentheses/PartentheseEditView.vue"),
         meta: {
             requiresAuth: true,
             requiresRoles: ["ADMIN", "PPC", "MEMBER"]
@@ -123,7 +108,7 @@ const routes = [
     {
         path: "/partentheses",
         name: "Les p'Art'enthèses",
-        component: PartentheseListView,
+        component: () => import("@/views/partentheses/PartentheseListView.vue"),
         meta: {
             requiresAuth: false
         }
@@ -131,7 +116,7 @@ const routes = [
     {
         path: "/partentheses/:id",
         name: "Une p'Art'enthèse",
-        component: PartentheseView,
+        component: () => import("@/views/partentheses/PartentheseView.vue"),
         meta: {
             requiresAuth: false
         }

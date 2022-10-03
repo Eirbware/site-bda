@@ -12,6 +12,7 @@ export default (request: Request, response: Response, next: () => void) => {
     // @ts-ignore
     if (request.session.user.role === Role.ADMIN) {
         next();
+        return;
     }
 
     // Otherwise, the user is not admin

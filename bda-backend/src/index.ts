@@ -19,6 +19,7 @@ import staticRoute from "./routes/staticRoute";
 import {PartentheseCategoryResolver} from "./graphql/queries/PartentheseCategory";
 import {Partenthese} from "./graphql/types/Partenthese";
 import {PartentheseResolver} from "./graphql/queries/Partenthese";
+import debugRoute from "./routes/debugRoute";
 
 // Load environment variables from .env file
 dotenv.config()
@@ -94,6 +95,7 @@ APP.use(bodyParser.json());
     authenticationRoute(APP);
     fileUploadRoute(APP);
     staticRoute(APP);
+    debugRoute(APP);
 
     APP.listen(PORT, () => {
         console.log(`[*] Server is running on port ${PORT}`);

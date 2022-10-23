@@ -66,7 +66,7 @@ export default {
   flex-direction: column;
 
   position: relative;
-  background: url(./src/assets/backgrounds/waves-optimized.svg) fixed;
+  background: url(@/assets/backgrounds/waves-optimized.svg) fixed;
   background-size: cover;
   background-repeat: no-repeat;
 }
